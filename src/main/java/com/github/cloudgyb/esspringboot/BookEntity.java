@@ -3,8 +3,7 @@ package com.github.cloudgyb.esspringboot;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -16,21 +15,12 @@ import java.util.Date;
 @Data
 @Entity
 public class BookEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
     private String author;
     private Double price;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Id
-    public Integer getId() {
-        return id;
-    }
+    private Date createTime = new Date();
+    private Date updateTime = new Date();
 }
